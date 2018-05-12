@@ -1,0 +1,74 @@
+<html>
+<head>
+<style>
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+body {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  margin: 0;
+}
+textarea {
+  flex-grow: 1;
+  font-size: 12px;
+  font-family: Menlo, monaco, Courier;
+  padding: 20px;
+  outline: none;
+  background: #2a2a2a;
+  color: rgba(255,255,255,0.8);
+  border: none;
+}
+#send {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  padding: 10px 30px;
+  font-family: Menlo, monaco, Courier;
+  background: gold;
+  color: black;
+  text-decoration: none;
+}
+</style>
+<script src="https://unpkg.com/datacash"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+  var dslEl = document.querySelector("#dsl");
+  var txEl = document.querySelector("#tx");
+  var hexEl = document.querySelector("#hex");
+  dslEl.oninput = function(e) {
+    update(e.target.value)
+  }
+  var update = function(html) {
+    var h = html.replace(/\s/g, '');
+    datacash.build(JSON.parse(h), function(err, tx) {
+      txEl.value = JSON.stringify(tx.toObject(), null, 2);
+      hexEl.value = tx.toString()
+    })
+  }
+  update(dslEl.value)
+})
+</script>
+</head>
+<body>
+<textarea id='dsl'>
+{
+  "data": ["0x6d02", "post to memo.cash!"],
+  "cash": {
+    "key": "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
+    "to": [{
+      "address": "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
+      "value": 300
+    }]
+  }
+}
+</textarea>
+<textarea id='tx'></textarea>
+<textarea id='hex'></textarea>
+<a target="_blank" href='https://bitcoincash.blockexplorer.com/tx/send' id='send'>Open raw transaction broadcast site</a>
+</body>
+</html>
