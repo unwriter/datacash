@@ -1,5 +1,7 @@
 # Datacash
 
+![logo](logo.png)
+
 Datacash is a dead simple library for building Bitcoin Cash OP_RETURN transactions.
 
 
