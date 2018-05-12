@@ -8,9 +8,9 @@ Datacash is the simplest library for building and broadcasting Bitcoin Cash OP_R
 
 # Preview
 
-All you need for posting to the blockchain is 5 lines of simple declarative code. 
+Post to the blockchain with just 4 lines of code. 
 
-![demo](demo.png)
+![code](code.png)
 
 ---
 
