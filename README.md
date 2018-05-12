@@ -97,7 +97,7 @@ And that's it! No complex APIs, but you can construct pretty much all kinds of O
 
 # How it works
 
-`datacash` is powered by `bitcoincash.js`, which in turn is a fork of `bitcore-lib`, which means all the low level transactions are completely secure.
+`datacash` is powered by [bitcoincash.js](https://github.com/bitcoincashjs/bitcoincashjs), which in turn is a fork of [bitcore-lib](https://github.com/bitpay/bitcore-lib), which means all the low level transactions are completely robust and secure.
 
 `datacash` was created in order to make it dead simple to construct `OP_RETURN` related transactions, but you can even use it to build regular transactions.
 
