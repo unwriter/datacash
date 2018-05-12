@@ -2,12 +2,14 @@
 
 ![logo](logo.png)
 
-Datacash is a dead simple library for building Bitcoin Cash OP_RETURN transactions.
+Datacash is the simplest library for building and broadcasting Bitcoin Cash OP_RETURN transactions.
 
 
 # Demo
 
 [Datacash transaction composer](https://unwriter.github.io/datacash/example/index.html)
+
+[View source](example/index.html)
 
 
 # Install
