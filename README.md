@@ -83,7 +83,7 @@ Above DSL describes a transaction that:
 
 - Posts `"hello from datacash"` to [memo.cash](https://memo.cash) network (See the protocol at [https://memo.cash/protocol](https://memo.cash/protocol)),
 - signed with a private key: `5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw`,
-- through a public JSON-RPC endpoing at [https://cashexplorer.bitcoin.com](https://cashexplorer.bitcoin.com)
+- through a public JSON-RPC endpoint at [https://cashexplorer.bitcoin.com](https://cashexplorer.bitcoin.com)
 - while tipping the user `1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81` a value of `1000` satoshis.
 
 All you need to do to invoke it is call:
@@ -92,7 +92,7 @@ All you need to do to invoke it is call:
 datacash.send(DSL)
 ```
 
-If you want to build a transaction but save it for later or export it, you can instead call:
+Want to instead build a transaction but save it for later or export it? Just call:
 
 ```
 datacash.build(DSL, function(error, tx) {
@@ -110,6 +110,7 @@ And that's it! No complex APIs, but you can construct pretty much all kinds of O
 
 `datacash` was created in order to make it dead simple to construct `OP_RETURN` related transactions, but you can even use it to build regular transactions.
 
+Also `datacash` exposes `datacash.bch` endpoint which you can use to access the underlying `bitcoincash.js` library. If you need more sophisticated features (in most cases you won't), feel free to use this feature. Best of both worlds!
 
 ---
 
