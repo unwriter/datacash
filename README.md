@@ -4,6 +4,15 @@
 
 Datacash is the simplest library for building and broadcasting Bitcoin Cash OP_RETURN transactions.
 
+---
+
+# Preview
+
+All you need for posting to the blockchain is 5 lines of simple declarative code. 
+
+![demo](demo.png)
+
+---
 
 # Demo
 
