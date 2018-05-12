@@ -38,8 +38,8 @@ Send `"Hello from datacash"` to [memo.cash](https://memo.cash) in 5 lines of cod
 ```
 const privateKey = [YOUR PRIVATE KEY HERE];
 datacash.send({
-	data: ["0x6d02", "Hello from datacash"],
-	cash: { key: privateKey }
+  data: ["0x6d02", "Hello from datacash"],
+  cash: { key: privateKey }
 });
 ```
 
@@ -53,16 +53,16 @@ Datacash is DSL (Domain Specific Language) based. Here's an example:
 
 ```
 var DSL = {
-	data: ["0x6d02", "hello from datacash"],
-	cash: {
-		key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
-		rpc: "https://cashexplorer.bitcoin.com",
-		fee: 300,
-		to: [{
-			address: "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
-			value: 1000
-		}]
-	}
+  data: ["0x6d02", "hello from datacash"],
+  cash: {
+    key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
+    rpc: "https://cashexplorer.bitcoin.com",
+    fee: 300,
+    to: [{
+      address: "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
+      value: 1000
+    }]
+  }
 }
 ```
 
@@ -83,7 +83,7 @@ If you want to build a transaction but save it for later or export it, you can i
 
 ```
 datacash.build(DSL, function(error, tx) {
-	console.log("Here's the transaction! : ", tx)
+  console.log("Here's the transaction! : ", tx)
 })
 ```
 
@@ -137,12 +137,12 @@ The `data` attribute is used to construct human readable/processable data to pos
 
 ```
 const tx = {
-	data: ["0x6d02", "hello world"]
+  data: ["0x6d02", "hello world"]
 }
-datacash.build(tx, function(err, tx) {	
-	/**
-	* res contains the transaction object
-	**/
+datacash.build(tx, function(err, tx) {  
+  /**
+  * res contains the transaction object
+  **/
 });
 ```
 
@@ -162,12 +162,12 @@ This is useful if you want to export a transaction and later recover it.
 
 ```
 const tx = {
-	data: "6a04366430320b68656c6c6f20776f726c64"
+  data: "6a04366430320b68656c6c6f20776f726c64"
 }
 datacash.build(tx, function(err, tx) {
-	/**
-	* res contains the generated transaction object
-	**/
+  /**
+  * res contains the generated transaction object
+  **/
 });
 ```
 
@@ -190,14 +190,14 @@ The `key` attribute is mandatory. You must specify a private key in order to sig
 
 ```
 const tx = {
-	data: ["6d02", "hello world"],
-	cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
+  data: ["6d02", "hello world"],
+  cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
 }
 datacash.build(tx, function(err, tx) {
-	/**
-	* res contains the generated transaction object
-	* (a signed transaction, since 'key' is included)
-	**/
+  /**
+  * res contains the generated transaction object
+  * (a signed transaction, since 'key' is included)
+  **/
 })
 ```
 
@@ -210,17 +210,17 @@ The `rpc` attribute is used to manually set the JSON-RPC endpoint you wish to br
 
 ```
 const tx = {
-	data: ["6d02", "hello world"],
-	cash: {
-		key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
-		rpc: "https://cashexplorer.bitcoin.com"
-	}
+  data: ["6d02", "hello world"],
+  cash: {
+    key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
+    rpc: "https://cashexplorer.bitcoin.com"
+  }
 };
 datacash.build(tx, function(err, res) {
-	/**
-	* res contains the generated transaction object
-	* (a signed transaction, since 'key' is included)
-	**/
+  /**
+  * res contains the generated transaction object
+  * (a signed transaction, since 'key' is included)
+  **/
 })
 ```
 
@@ -232,18 +232,18 @@ The `fee` attribute is used to specify the transaction fee in **satoshis**.
 
 ```
 const tx = {
-	data: ["6d02", "hello world"],
-	cash: {
-		key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
-		rpc: "https://cashexplorer.bitcoin.com",
-		fee: 300
-	}
+  data: ["6d02", "hello world"],
+  cash: {
+    key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
+    rpc: "https://cashexplorer.bitcoin.com",
+    fee: 300
+  }
 }
 datacash.build(tx, function(err, res) {
-	/**
-	* res contains the generated transaction object
-	* (a signed transaction, since 'key' is included)
-	**/
+  /**
+  * res contains the generated transaction object
+  * (a signed transaction, since 'key' is included)
+  **/
 })
 ```
 
@@ -253,30 +253,30 @@ The `to` attribute is an array of receivers to send the OP_RETURN to. Normally t
 
 - default: `null`
 - Each item in the `to` array can have 2 attributes:
-	- address: Bitcoin cash address string
-	- amount: number (in satoshi)
+  - address: Bitcoin cash address string
+  - amount: number (in satoshi)
 
 ```
 const tx = {
-	data: ["6d02", "hello world"],
-	cash: {
-		key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
-		to: [{
-			address: "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
-			amount: 500
-		}, {
-			address: "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
-			amount: 500
-		}]
-	}
+  data: ["6d02", "hello world"],
+  cash: {
+    key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
+    to: [{
+      address: "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
+      amount: 500
+    }, {
+      address: "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
+      amount: 500
+    }]
+  }
 };
 datacash.build(tx, function(err, res) {
-	/**
-	* res contains the generated transaction object
-	* (a signed transaction, since 'key' is included.
-	* Also, the transaction includes actual coin transfer outputs,
-	* since the "to" attribute is included)
-	**/
+  /**
+  * res contains the generated transaction object
+  * (a signed transaction, since 'key' is included.
+  * Also, the transaction includes actual coin transfer outputs,
+  * since the "to" attribute is included)
+  **/
 })
 ```
 
@@ -295,11 +295,11 @@ The only difference is the callback function.
 
 ```
 const tx = {
-	data: ["6d02", "hello world"])
-	cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
+  data: ["6d02", "hello world"])
+  cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
 }
 datacash.send(tx, function(err, res) {
-	console.log(res)
+  console.log(res)
 })
 ```
 
@@ -307,15 +307,15 @@ datacash.send(tx, function(err, res) {
 
 ```
 const tx = {
-	data: ["6d02", "hello world"])
-	cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
+  data: ["6d02", "hello world"])
+  cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
 }
 datacash.build(tx, function(err, res) {
-	datacash.send({
-		transaction: res
-	}, function(err2, res2) {
-		console.log(res2)
-	})
+  datacash.send({
+    transaction: res
+  }, function(err2, res2) {
+    console.log(res2)
+  })
 })
 ```
 
