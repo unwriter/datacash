@@ -168,7 +168,11 @@ const tx = {
 }
 datacash.build(tx, function(err, tx) {  
   /**
-  * res contains the transaction object
+  * res contains the generated transaction object, powered by bitcoincash.js
+  * You can check it out at https://github.com/bitcoincashjs/bitcoincashjs/blob/master/src/transaction/transaction.js
+  * Some available methods you can call on the tx object are:
+  * 1. tx.toString() => Export as string
+  * 2. tx.toObject() => Inspect the transaction as JSON object
   **/
 });
 ```
@@ -193,7 +197,11 @@ const tx = {
 }
 datacash.build(tx, function(err, tx) {
   /**
-  * res contains the generated transaction object
+  * res contains the generated transaction object, powered by bitcoincash.js
+  * You can check it out at https://github.com/bitcoincashjs/bitcoincashjs/blob/master/src/transaction/transaction.js
+  * Some available methods you can call on the tx object are:
+  * 1. tx.toString() => Export as string
+  * 2. tx.toObject() => Inspect the transaction as JSON object
   **/
 });
 ```
@@ -304,6 +312,53 @@ datacash.build(tx, function(err, res) {
   * Also, the transaction includes actual coin transfer outputs,
   * since the "to" attribute is included)
   **/
+})
+```
+
+---
+
+### C. tx
+
+You may want to import a previously exported transaction. This is when you use the `tx` attribute.
+
+#### 1. Importing a transaction from exported hex string
+
+```
+datacash.build({
+  tx: "01000000014182e9844c2979d973d3e82c55d57e1a971ed2e5473557ce0414864612911aa5010000006b48304502210098f8f32cd532bc73eef1e01c3d359caf0a7aa8f3dc1eebb8011d80810c9dbe66022054c6b23d5bd9573a1e6135c39dcc31a65cab91f3b3db781995e824614e24bad9412102d024c1861ccc655ce3395bc4d8a0bdcfb929ffcd9d1a8c81d8c6fa1dfb9bd70cffffffff020000000000000000106a026d020b68656c6c6f20776f726c64c2ff0000000000001976a9142a3a6886d98776d0197611e5328ba8806c3739db88ac00000000"
+}, function(err, tx) {
+  // 'tx' is a transaction object
+})
+```
+
+#### 2. Importing an unsigned transaction and building a signed transaction
+
+You can export an unsigned transaction, and later import and sign it to create a signed transaction, simply by supporting a `cash.key` attribute.
+
+```
+// import an unsigned transaction and sign it
+datacash.build({
+  tx: "01000000014182e9844c2979d973d3e82c55d57e1a971ed2e5473557ce0414864612911aa5010000006b48304502210098f8f32cd532bc73eef1e01c3d359caf0a7aa8f3dc1eebb8011d80810c9dbe66022054c6b23d5bd9573a1e6135c39dcc31a65cab91f3b3db781995e824614e24bad9412102d024c1861ccc655ce3395bc4d8a0bdcfb929ffcd9d1a8c81d8c6fa1dfb9bd70cffffffff020000000000000000106a026d020b68656c6c6f20776f726c64c2ff0000000000001976a9142a3a6886d98776d0197611e5328ba8806c3739db88ac00000000",
+  cash: {
+    key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw"
+  }
+}, function(err, tx) {
+  // 'tx' is a signed transaction object
+})
+```
+
+Notice how in addition to the `tx` attribute we've added the `cash.key` attribute. This will import the unsigned transaction and sign it.
+
+
+#### 3. Importing and sending a signed transaction from exported hex string
+
+If you already have a signed transaction object, you can simply send it away without any additional steps.
+
+```
+datacash.send({
+  tx: "01000000014182e9844c2979d973d3e82c55d57e1a971ed2e5473557ce0414864612911aa5010000006b48304502210098f8f32cd532bc73eef1e01c3d359caf0a7aa8f3dc1eebb8011d80810c9dbe66022054c6b23d5bd9573a1e6135c39dcc31a65cab91f3b3db781995e824614e24bad9412102d024c1861ccc655ce3395bc4d8a0bdcfb929ffcd9d1a8c81d8c6fa1dfb9bd70cffffffff020000000000000000106a026d020b68656c6c6f20776f726c64c2ff0000000000001976a9142a3a6886d98776d0197611e5328ba8806c3739db88ac00000000"
+}, function(err, hash) {
+  // 'hash' is the transaction hash
 })
 ```
 
