@@ -112,12 +112,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return false;
   }
   sendEl.onclick = function(e) {
-    e.target.textContent = "Sending...";
     if (!sending) {
       var v = transaction.verify();
       if (typeof v === 'string') {
         alert(v);
       } else {
+        e.target.textContent = "Sending...";
         sending = true;
         fetch(endpoint, {
           headers: { 'Content-type': 'application/json' },
