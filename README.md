@@ -72,12 +72,12 @@ Above code builds an `OP_RETURN` transaction with `0x6d02 hello` as push data, a
 
 ---
 
-# Powered by simple DSL
+# Declarative Programming
 
-Datacash is DSL (Domain Specific Language) based. Here's an example:
+Datacash lets you build a transaction in a declarative manner. Here's an example:
 
 ```
-var DSL = {
+var config = {
   data: ["0x6d02", "hello from datacash"],
   cash: {
     key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
@@ -91,7 +91,7 @@ var DSL = {
 }
 ```
 
-Above DSL describes a transaction that:
+Above config describes a transaction that:
 
 - Posts `"hello from datacash"` to [memo.cash](https://memo.cash) network (See the protocol at [https://memo.cash/protocol](https://memo.cash/protocol)),
 - paying the fee of `250` satoshis,
@@ -102,13 +102,13 @@ Above DSL describes a transaction that:
 All you need to do to invoke it is call:
 
 ```
-datacash.send(DSL)
+datacash.send(config)
 ```
 
 Want to instead build a transaction but save it for later or export it? Just call:
 
 ```
-datacash.build(DSL, function(error, tx) {
+datacash.build(config, function(error, tx) {
   console.log("Here's the transaction! : ", tx)
 })
 ```
