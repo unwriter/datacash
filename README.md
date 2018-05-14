@@ -28,7 +28,7 @@ Post to both Memo.cash and Blockpress with a single interface.
 
 - [DEMO](https://unwriter.github.io/datacash/example/microblog.html)
 
-- [View source](example/microblog.html)
+- [View source](example/playground.html)
 
 ---
 
