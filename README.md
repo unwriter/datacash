@@ -16,9 +16,21 @@ Post to the blockchain with just 4 lines of code.
 
 # Demo
 
-[Datacash transaction composer](https://unwriter.github.io/datacash/example/index.html)
+## 1. Datacash Transaction Composer
 
-[View source](example/index.html)
+- [Datacash transaction composer](https://unwriter.github.io/datacash/example/index.html)
+
+- [View source](example/index.html)
+
+## 2. Microblogging Playground
+
+Post to both Memo.cash and Blockpress with a single interface.
+
+- [DEMO](https://unwriter.github.io/datacash/example/microblog.html)
+
+- [View source](example/microblog.html)
+
+---
 
 
 # Install
