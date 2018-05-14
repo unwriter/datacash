@@ -70,7 +70,7 @@ var DSL = {
   cash: {
     key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
     rpc: "https://cashexplorer.bitcoin.com",
-    fee: 300,
+    fee: 250,
     to: [{
       address: "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
       value: 1000
@@ -82,6 +82,7 @@ var DSL = {
 Above DSL describes a transaction that:
 
 - Posts `"hello from datacash"` to [memo.cash](https://memo.cash) network (See the protocol at [https://memo.cash/protocol](https://memo.cash/protocol)),
+- paying the fee of `250` satoshis,
 - signed with a private key: `5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw`,
 - through a public JSON-RPC endpoint at [https://cashexplorer.bitcoin.com](https://cashexplorer.bitcoin.com)
 - while tipping the user `1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81` a value of `1000` satoshis.
@@ -242,7 +243,7 @@ datacash.build(tx, function(err, res) {
 
 The `fee` attribute is used to specify the transaction fee in **satoshis**.
 
-- default: `250`
+- default: `300`
 
 ```
 const tx = {
@@ -250,7 +251,7 @@ const tx = {
   cash: {
     key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
     rpc: "https://cashexplorer.bitcoin.com",
-    fee: 300
+    fee: 250
   }
 }
 datacash.build(tx, function(err, res) {

@@ -34,6 +34,7 @@ textarea {
   text-decoration: none;
 }
 </style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://unpkg.com/datacash"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     update(e.target.value)
   }
   var update = function(html) {
-    var h = html.replace(/\s/g, '');
+    var h = html.replace(/\n/g, '');
     datacash.build(JSON.parse(h), function(err, tx) {
       txEl.value = JSON.stringify(tx.toObject(), null, 2);
       hexEl.value = tx.toString()

@@ -2,7 +2,7 @@ const bch = require('bitcoincashjs');
 const explorer = require('bitcore-explorers');
 const defaults = {
   rpc: "https://cashexplorer.bitcoin.com",
-  tip: 250
+  tip: 300
 }
 // The end goal of 'build' is to create a hex formated transaction object
 // therefore this function must end with _tx() for all cases 

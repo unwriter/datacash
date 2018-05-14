@@ -20,8 +20,8 @@ describe('datacash', function() {
           assert.equal(generated.outputs.length, 1)
           // the only existing output is a script
           assert(generated.outputs[0].script);
-          // uses the default fee of 250
-          assert.equal(generated.fee, 250)
+          // uses the default fee of 300
+          assert.equal(generated.fee, 300)
 
           done()
         });
@@ -38,8 +38,8 @@ describe('datacash', function() {
           assert.equal(generated.outputs.length, 1)
           // the only existing output is a script
           assert(generated.outputs[0].script);
-          // uses the default fee of 250
-          assert.equal(generated.fee, 250)
+          // uses the default fee of 300
+          assert.equal(generated.fee, 300)
 
           done()
         });
@@ -61,8 +61,8 @@ describe('datacash', function() {
 
           // input length 1 => from the user specifiec by the private key
           assert.equal(generated.inputs.length, 1)
-          // uses the default fee of 250
-          assert.equal(generated.fee, 250)
+          // uses the default fee of 300
+          assert.equal(generated.fee, 300)
           // contains a 'changeScript'
           assert(generated.changeScript)
 

@@ -1,6 +1,6 @@
 {
   "name": "datacash",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "post data over bitcoin cash",
   "main": "index.js",
   "scripts": {
