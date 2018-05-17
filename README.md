@@ -385,20 +385,47 @@ datacash.send(tx, function(err, res) {
 })
 ```
 
-### B. Building and sending transactions in separate steps
+### B. Building an UNSIGNED transaction and exporting, and then later importing and sending the transaction in separate steps
 
 ```
+// Build and export an unsigned transaction for later usage
+var exportedTxHex = "";
 const tx = {
-  data: ["6d02", "hello world"])
-  cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
+  data: ["6d02", "hello world"]
 }
 datacash.build(tx, function(err, res) {
-  datacash.send({
-    transaction: res
-  }, function(err2, res2) {
-    console.log(res2)
-  })
+  exportedTxHex = res;
+})
+
+// Later import exportedTxHex and sign it with privatkey, and broadcast, all in one method:
+datacash.send({
+  tx: exportedTx,
+  cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
+}, function(err, hash) {
+  // hash contains the transaction hash after the broadcast
 })
 ```
 
+### C. Building a SIGNED transaction and exporting, and then later importing and sending
 
+This time since the exported transaction is already signed, no need for additional `cash.key` attriute when sending later
+
+
+```
+// Build and export an unsigned transaction for later usage
+var exportedSignedTxHex = "";
+const tx = {
+  data: ["6d02", "hello world"],
+  cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
+}
+datacash.build(tx, function(err, res) {
+  exportedSignedTxHex = res;
+})
+
+// Later import exportedTxHex and broadcast, all in one method:
+datacash.send({
+  tx: exportedSignedTx,
+}, function(err, hash) {
+  // hash contains the transaction hash after the broadcast
+})
+```
