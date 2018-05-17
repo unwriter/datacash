@@ -2,7 +2,7 @@ const bch = require('bitcoincashjs');
 const explorer = require('bitcore-explorers');
 const defaults = {
   rpc: "https://cashexplorer.bitcoin.com",
-  tip: 300
+  fee: 400
 }
 // The end goal of 'build' is to create a hex formated transaction object
 // therefore this function must end with _tx() for all cases 
@@ -10,7 +10,7 @@ const defaults = {
 var build = function(options, callback) {
   let script = null;
   let rpcaddr = (options.cash && options.cash.rpc) ? options.cash.rpc : defaults.rpc;
-  let fee = (options.cash && options.cash.fee) ? options.cash.fee : defaults.tip;
+  let fee = (options.cash && options.cash.fee) ? options.cash.fee : defaults.fee;
   if (options.tx) {
     // if tx exists, check to see if it's already been signed.
     // if it's a signed transaction
