@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "build": "browserify index.js --standalone datacash > dist/datacash.js"
+    "build": "browserify index.js --standalone datacash > dist/datacash.js && uglifyjs dist/datacash.js > dist/datacash.min.js"
   },
   "keywords": [
     "bch",
@@ -23,7 +23,8 @@
     "dist"
   ],
   "devDependencies": {
+    "browserify": "^16.2.0",
     "mocha": "^5.1.1",
-    "browserify": "^16.2.0"
+    "uglify-es": "^3.3.9"
   }
 }
