@@ -429,3 +429,64 @@ datacash.send({
   // hash contains the transaction hash after the broadcast
 })
 ```
+
+---
+
+# Advanced
+
+Datacash depends on two powerful libraries for low level stuff.
+
+1. bitcoincash.js: https://bitcoincashjs.github.io/
+2. bitcore-explorers: https://github.com/bitpay/bitcore-explorers
+
+While Datacash is designed to be the simplest possible way to write data to the blockchain, you may want to sometimes access the low level libraries that power datacash.
+
+Datacash exposes additional endpoints so you can simply access these libraries without having to install or include any additional libraries.
+
+## 1. datacash.bch
+
+This endpoint exposes the [bitcoincash.js](https://bitcoincashjs.github.io) library object. Basically by referncing `bch` you have access to the entire bitcoincash.js library.
+
+```
+const privateKey = new datacash.bch.PrivateKey();
+const address = privateKey.toAddress();
+console.log(address.toString()) // 15WZwpw3BofscM2u43ji85BXucai5YGToL
+```
+
+## 2. datacash.connect
+
+This endpoint is used to access the [bitcore-explorers](https://github.com/bitpay/bitcore-explorers) library.
+
+Using this endpoint you can connect to a public JSON-RPC endpoint to let you make various direct JSON-RPC function calls such as `getUnspentUtxos`, etc. (Basically it instantiates and returns the `insight` object from https://github.com/bitpay/bitcore-explorers)
+
+### Syntax
+
+```
+datacash.connect([RPC ENDPOINT]).[METHOD]
+```
+
+If you leave the `RPC ENDPOINT` part out, it will automatically use the default https://cashexplorer.bitcoin.com node
+
+### Example 1: Connecting to default node and calling `getUtxos()` method:
+
+```
+datacash.connect().getUnspentUtxos("14xMz8rKm4L83RuZdmsHXD2jvENZbv72vR", function(err, utxos) {
+  if (err) {
+    console.log("Error: ", err)
+  } else {
+    console.log(utxos) 
+  }
+})
+```
+
+### Example 2. Specifying a JSON-RPC endpoint
+
+```
+datacash.connect('https://cashexplorer.bitcoin.com').getUnspentUtxos("14xMz8rKm4L83RuZdmsHXD2jvENZbv72vR", function(err, utxos) {
+  if (err) {
+    console.log("Error: ", err)
+  } else {
+    console.log(utxos) 
+  }
+});
+```

@@ -20,8 +20,8 @@ describe('datacash', function() {
           assert.equal(generated.outputs.length, 1)
           // the only existing output is a script
           assert(generated.outputs[0].script);
-          // uses the default fee of 300
-          assert.equal(generated.fee, 300)
+          // uses the default fee of 400
+          assert.equal(generated.fee, 400)
 
           done()
         });
@@ -38,8 +38,8 @@ describe('datacash', function() {
           assert.equal(generated.outputs.length, 1)
           // the only existing output is a script
           assert(generated.outputs[0].script);
-          // uses the default fee of 300
-          assert.equal(generated.fee, 300)
+          // uses the default fee of 400
+          assert.equal(generated.fee, 400)
 
           done()
         });
@@ -61,8 +61,8 @@ describe('datacash', function() {
 
           // input length 1 => from the user specifiec by the private key
           assert.equal(generated.inputs.length, 1)
-          // uses the default fee of 300
-          assert.equal(generated.fee, 300)
+          // uses the default fee of 400
+          assert.equal(generated.fee, 400)
           // contains a 'changeScript'
           assert(generated.changeScript)
 
@@ -468,6 +468,26 @@ describe('datacash', function() {
             })
           })
         })
+      })
+    })
+  })
+  describe('advanced', function() {
+    describe('bch', function() {
+      it('exposes bch', function() {
+        assert(datacash.bch.Networks)
+        assert(datacash.bch.Opcode)
+      })
+    })
+    describe('connect', function() {
+      it('default', function() {
+        var insight = datacash.connect();
+        assert.equal(insight.constructor.name, "Insight")
+        assert.equal(insight.url, 'https://cashexplorer.bitcoin.com')
+      })
+      it('connect with url', function() {
+        var insight = datacash.connect('https://cashexplorer2.bitcoin.com');
+        assert.equal(insight.constructor.name, "Insight")
+        assert.equal(insight.url, 'https://cashexplorer2.bitcoin.com')
       })
     })
   })

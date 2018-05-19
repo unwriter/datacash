@@ -92,9 +92,14 @@ var _script = function(options) {
   }
   return s;
 }
+var connect = function(endpoint) {
+  var rpc = endpoint ? endpoint : defaults.rpc;
+  return new explorer.Insight(rpc);
+}
 module.exports = {
-  bch: bch,
   build: build,
-  send: send
+  send: send,
+  bch: bch,
+  connect: connect,
 }
 
