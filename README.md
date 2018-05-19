@@ -467,7 +467,7 @@ datacash.connect([RPC ENDPOINT]).[METHOD]
 
 If you leave the `RPC ENDPOINT` part out, it will automatically use the default https://cashexplorer.bitcoin.com node
 
-### Example 1: Connecting to default node and calling `getUtxos()` method:
+### Example 1: Connecting to default node and calling `getUnspentUtxos()` method:
 
 ```
 datacash.connect().getUnspentUtxos("14xMz8rKm4L83RuZdmsHXD2jvENZbv72vR", function(err, utxos) {
