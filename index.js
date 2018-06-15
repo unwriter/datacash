@@ -39,7 +39,7 @@ var build = function(options, callback) {
     const address = privateKey.toAddress();
     const insight = new explorer.Insight(rpcaddr)
     insight.getUnspentUtxos(address, function (err, res) {
-      let tx = new bch.Transaction(options.tx).from(res[0]).fee(fee).change(address)
+      let tx = new bch.Transaction(options.tx).from(res);
       if (script) {
         tx.addOutput(new bch.Transaction.Output({ script: script, satoshis: 0 }));
       }
@@ -47,6 +47,18 @@ var build = function(options, callback) {
         options.cash.to.forEach(function(receiver) {
           tx.to(receiver.address, receiver.value)
         })
+      }
+
+      tx.fee(400).change(address);
+      var estSize=Math.ceil(tx._estimateSize()*1.4);
+      tx.fee(estSize);
+
+      //Check all the outputs for dust
+      for(var i=0;i<tx.outputs.length;i++){
+        if(tx.outputs[i]._satoshis>0 && tx.outputs[i]._satoshis<546){
+          tx.outputs.splice(i,1);
+          i--;
+        }
       }
       let transaction = tx.sign(privateKey);
       callback(null, transaction);
