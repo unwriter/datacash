@@ -1,6 +1,6 @@
 {
   "name": "datacash",
-  "version": "1.1.7",
+  "version": "1.1.9",
   "description": "post data over bitcoin cash",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "bitcoincash",
     "bitcoin"
   ],
-  "author": "alejandra alejandro",
+  "author": "unwriter",
   "license": "ISC",
   "unpkg": "dist/datacash.min.js",
   "dependencies": {

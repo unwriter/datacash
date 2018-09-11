@@ -76,7 +76,11 @@ var send = function(options, callback) {
   build(options, function(err, tx) {
     let rpcaddr = (options.cash && options.cash.rpc) ? options.cash.rpc : defaults.rpc;
     const insight = new explorer.Insight(rpcaddr)
-    insight.broadcast(tx.toString(), callback)
+    if (callback) {
+      insight.broadcast(tx.toString(), callback)
+    } else {
+      insight.broadcast(tx.toString(), function() { })
+    }
   })
 }
 // compose script
