@@ -289,7 +289,7 @@ The `to` attribute is an array of receivers to send the OP_RETURN to. Normally t
 - default: `null`
 - Each item in the `to` array can have 2 attributes:
   - address: Bitcoin cash address string
-  - amount: number (in satoshi)
+  - value: number (in satoshi)
 
 ```
 const tx = {
@@ -298,10 +298,10 @@ const tx = {
     key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
     to: [{
       address: "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
-      amount: 500
+      value: 500
     }, {
       address: "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
-      amount: 500
+      value: 500
     }]
   }
 };
