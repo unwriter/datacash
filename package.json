@@ -16,8 +16,8 @@
   "license": "ISC",
   "unpkg": "dist/datacash.min.js",
   "dependencies": {
-    "bitcoincashjs": "^0.1.10",
-    "bitcore-explorers": "^1.0.1"
+    "bitcore-explorers": "^1.0.1",
+    "bitcore-lib-cash": "^0.18.1"
   },
   "files": [
     "dist"
