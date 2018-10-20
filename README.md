@@ -225,7 +225,7 @@ The `key` attribute is mandatory. You must specify a private key in order to sig
 
 ```
 const tx = {
-  data: ["6d02", "hello world"],
+  data: ["0x6d02", "hello world"],
   cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
 }
 datacash.build(tx, function(err, tx) {
@@ -245,7 +245,7 @@ The `rpc` attribute is used to manually set the JSON-RPC endpoint you wish to br
 
 ```
 const tx = {
-  data: ["6d02", "hello world"],
+  data: ["0x6d02", "hello world"],
   cash: {
     key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
     rpc: "https://cashexplorer.bitcoin.com"
@@ -267,7 +267,7 @@ The `fee` attribute is used to specify the transaction fee in **satoshis**.
 
 ```
 const tx = {
-  data: ["6d02", "hello world"],
+  data: ["0x6d02", "hello world"],
   cash: {
     key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
     rpc: "https://cashexplorer.bitcoin.com",
@@ -293,7 +293,7 @@ The `to` attribute is an array of receivers to send the OP_RETURN to. Normally t
 
 ```
 const tx = {
-  data: ["6d02", "hello world"],
+  data: ["0x6d02", "hello world"],
   cash: {
     key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
     to: [{
@@ -377,7 +377,7 @@ The only difference is the callback function.
 
 ```
 const tx = {
-  data: ["6d02", "hello world"])
+  data: ["0x6d02", "hello world"])
   cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
 }
 datacash.send(tx, function(err, res) {
@@ -391,7 +391,7 @@ datacash.send(tx, function(err, res) {
 // Build and export an unsigned transaction for later usage
 var exportedTxHex = "";
 const tx = {
-  data: ["6d02", "hello world"]
+  data: ["0x6d02", "hello world"]
 }
 datacash.build(tx, function(err, res) {
   exportedTxHex = res;
@@ -415,7 +415,7 @@ This time since the exported transaction is already signed, no need for addition
 // Build and export an unsigned transaction for later usage
 var exportedSignedTxHex = "";
 const tx = {
-  data: ["6d02", "hello world"],
+  data: ["0x6d02", "hello world"],
   cash: { key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw" }
 }
 datacash.build(tx, function(err, res) {
