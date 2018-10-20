@@ -10,7 +10,6 @@ const defaults = {
 var build = function(options, callback) {
   let script = null;
   let rpcaddr = (options.cash && options.cash.rpc) ? options.cash.rpc : defaults.rpc;
-  let fee = (options.cash && options.cash.fee) ? options.cash.fee : defaults.fee;
   if (options.tx) {
     // if tx exists, check to see if it's already been signed.
     // if it's a signed transaction
@@ -49,9 +48,13 @@ var build = function(options, callback) {
         })
       }
 
-      tx.fee(400).change(address);
-      var estSize=Math.ceil(tx._estimateSize()*1.4);
-      tx.fee(estSize);
+      tx.fee(defaults.fee).change(address);
+      if (options.cash && options.cash.fee) {
+        tx.fee(options.cash.fee)
+      } else {
+        var estSize=Math.ceil(tx._estimateSize()*1.4);
+        tx.fee(estSize);
+      }
 
       //Check all the outputs for dust
       for(var i=0;i<tx.outputs.length;i++){
@@ -65,6 +68,7 @@ var build = function(options, callback) {
     })
   } else {
     // key doesn't exist => create an unsigned transaction
+    let fee = (options.cash && options.cash.fee) ? options.cash.fee : defaults.fee;
     let tx = new bch.Transaction(options.tx).fee(fee);
     if (script) {
       tx.addOutput(new bch.Transaction.Output({ script: script, satoshis: 0 }));

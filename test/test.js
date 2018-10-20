@@ -1,5 +1,5 @@
 const assert = require('assert');
-const bch = require('bitcoincashjs');
+const bch = require('bitcore-lib-cash');
 const datacash = require('../index');
 
 // Private Key for Demo Purpose Only
@@ -21,7 +21,7 @@ describe('datacash', function() {
           // the only existing output is a script
           assert(generated.outputs[0].script);
           // uses the default fee of 400
-          assert.equal(generated.fee, 400)
+          assert(generated.fee <= 400)
 
           done()
         });
@@ -39,7 +39,7 @@ describe('datacash', function() {
           // the only existing output is a script
           assert(generated.outputs[0].script);
           // uses the default fee of 400
-          assert.equal(generated.fee, 400)
+          assert(generated.fee <= 400)
 
           done()
         });
@@ -62,7 +62,7 @@ describe('datacash', function() {
           // input length 1 => from the user specifiec by the private key
           assert.equal(generated.inputs.length, 1)
           // uses the default fee of 400
-          assert.equal(generated.fee, 400)
+          assert(generated.fee <= 400)
           // contains a 'changeScript'
           assert(generated.changeScript)
 
