@@ -2,7 +2,7 @@
 
 ![logo](logo.png)
 
-Datacash is the simplest library for building and broadcasting Bitcoin Cash OP_RETURN transactions.
+Datacash is the simplest library for building and broadcasting Bitcoin SV OP_RETURN transactions.
 
 ---
 
@@ -68,7 +68,7 @@ datacash.send({
 });
 ```
 
-Above code builds an `OP_RETURN` transaction with `0x6d02 hello` as push data, and broadcasts it to Bitcoin Cash network.
+Above code builds an `OP_RETURN` transaction with `0x6d02 hello` as push data, and broadcasts it to Bitcoin SV network.
 
 ---
 
@@ -81,7 +81,7 @@ var config = {
   data: ["0x6d02", "hello from datacash"],
   cash: {
     key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
-    rpc: "https://cashexplorer.bitcoin.com",
+    rpc: "https://bchsvexplorer.com",
     fee: 250,
     to: [{
       address: "1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81",
@@ -96,7 +96,7 @@ Above config describes a transaction that:
 - Posts `"hello from datacash"` to [memo.cash](https://memo.cash) network (See the protocol at [https://memo.cash/protocol](https://memo.cash/protocol)),
 - paying the fee of `250` satoshis,
 - signed with a private key: `5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw`,
-- through a public JSON-RPC endpoint at [https://cashexplorer.bitcoin.com](https://cashexplorer.bitcoin.com)
+- through a public JSON-RPC endpoint at [https://bchsvexplorer.com](https://bchsvexplorer.com)
 - while tipping the user `1A2JN4JAUoKCQ5kA4pHhu4qCqma8jZSU81` a value of `1000` satoshis.
 
 All you need to do to invoke it is call:
@@ -119,11 +119,11 @@ And that's it! No complex APIs, but you can construct pretty much all kinds of O
 
 # How it works
 
-`datacash` is powered by [bitcore-lib-cash](https://github.com/bitpay/bitcore-lib-cash), which in turn is a fork of [bitcore-lib](https://github.com/bitpay/bitcore-lib), which means all the low level transactions are completely robust and secure.
+`datacash` is powered by [bsv](https://github.com/moneybutton/bsv) a fork of [bitcore-lib-cash](https://github.com/bitpay/bitcore-lib-cash), which in turn is a fork of [bitcore-lib](https://github.com/bitpay/bitcore-lib), which means all the low level transactions are completely robust and secure.
 
 `datacash` was created in order to make it dead simple to construct `OP_RETURN` related transactions, but you can even use it to build regular transactions.
 
-Also `datacash` exposes `datacash.bsv` endpoint which you can use to access the underlying `bitcore-lib-cash` library. If you need more sophisticated features (in most cases you won't), feel free to use this feature. Best of both worlds!
+Also `datacash` exposes `datacash.bsv` endpoint which you can use to access the underlying `bsv` library. If you need more sophisticated features (in most cases you won't), feel free to use this feature. Best of both worlds!
 
 ---
 
@@ -168,8 +168,8 @@ const tx = {
 }
 datacash.build(tx, function(err, tx) {  
   /**
-  * res contains the generated transaction object, powered by bitcore-lib-cash
-  * You can check it out at https://github.com/bitpay/bitcore-lib-cash/blob/master/lib/transaction/transaction.js
+  * res contains the generated transaction object, powered by the bsv library
+  * You can check it out at https://github.com/moneybutton/bsv/blob/master/lib/transaction/transaction.js
   * Some available methods you can call on the tx object are:
   * 1. tx.toString() => Export as string
   * 2. tx.toObject() => Inspect the transaction as JSON object
@@ -197,8 +197,8 @@ const tx = {
 }
 datacash.build(tx, function(err, tx) {
   /**
-  * res contains the generated transaction object, powered by bitcore-lib-cash
-  * You can check it out at https://github.com/bitpay/bitcore-lib-cash/blob/master/lib/transaction/transaction.js
+  * res contains the generated transaction object, powered by the bsv library
+  * You can check it out at https://github.com/moneybutton/bsv/blob/master/lib/transaction/transaction.js
   * Some available methods you can call on the tx object are:
   * 1. tx.toString() => Export as string
   * 2. tx.toObject() => Inspect the transaction as JSON object
@@ -241,14 +241,14 @@ datacash.build(tx, function(err, tx) {
 
 The `rpc` attribute is used to manually set the JSON-RPC endpoint you wish to broadcast through. 
 
-- default: `https://cashexplorer.bitcoin.com`
+- default: `https://bchsvexplorer.com`
 
 ```
 const tx = {
   data: ["0x6d02", "hello world"],
   cash: {
     key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
-    rpc: "https://cashexplorer.bitcoin.com"
+    rpc: "https://bchsvexplorer.com"
   }
 };
 datacash.build(tx, function(err, res) {
@@ -270,7 +270,7 @@ const tx = {
   data: ["0x6d02", "hello world"],
   cash: {
     key: "5JZ4RXH4MoXpaUQMcJHo8DxhZtkf5U5VnYd9zZH8BRKZuAbxZEw",
-    rpc: "https://cashexplorer.bitcoin.com",
+    rpc: "https://bchsvexplorer.com",
     fee: 250
   }
 }
@@ -288,7 +288,7 @@ The `to` attribute is an array of receivers to send the OP_RETURN to. Normally t
 
 - default: `null`
 - Each item in the `to` array can have 2 attributes:
-  - address: Bitcoin cash address string
+  - address: Bitcoin SV address string
   - value: number (in satoshi)
 
 ```
@@ -436,7 +436,7 @@ datacash.send({
 
 Datacash depends on two powerful libraries for low level stuff.
 
-1. bitcore-lib-cash: https://github.com/bitpay/bitcore-lib-cash
+1. bsv: https://github.com/moneybutton/bsv
 2. bitcore-explorers: https://github.com/bitpay/bitcore-explorers
 
 While Datacash is designed to be the simplest possible way to write data to the blockchain, you may want to sometimes access the low level libraries that power datacash.
@@ -445,7 +445,7 @@ Datacash exposes additional endpoints so you can simply access these libraries w
 
 ## 1. datacash.bsv
 
-This endpoint exposes the [bitcore-lib-cash](https://github.com/bitpay/bitcore-lib-cash) library object. Basically by referncing `bsv` you have access to the entire bitcore-lib-cash library.
+This endpoint exposes the [bsv](https://github.com/moneybutton/bsv) library object. Basically by referncing `bsv` you have access to the entire bsv library.
 
 ```
 const privateKey = new datacash.bsv.PrivateKey();
@@ -465,7 +465,7 @@ Using this endpoint you can connect to a public JSON-RPC endpoint to let you mak
 datacash.connect([RPC ENDPOINT]).[METHOD]
 ```
 
-If you leave the `RPC ENDPOINT` part out, it will automatically use the default https://cashexplorer.bitcoin.com node
+If you leave the `RPC ENDPOINT` part out, it will automatically use the default https://bchsvexplorer.com node
 
 ### Example 1: Connecting to default node and calling `getUnspentUtxos()` method:
 
@@ -482,7 +482,7 @@ datacash.connect().getUnspentUtxos("14xMz8rKm4L83RuZdmsHXD2jvENZbv72vR", functio
 ### Example 2. Specifying a JSON-RPC endpoint
 
 ```
-datacash.connect('https://cashexplorer.bitcoin.com').getUnspentUtxos("14xMz8rKm4L83RuZdmsHXD2jvENZbv72vR", function(err, utxos) {
+datacash.connect('https://bchsvexplorer.com').getUnspentUtxos("14xMz8rKm4L83RuZdmsHXD2jvENZbv72vR", function(err, utxos) {
   if (err) {
     console.log("Error: ", err)
   } else {
