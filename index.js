@@ -1,7 +1,7 @@
-const bch = require('bitcore-lib-cash');
+const bch = require('bsv');
 const explorer = require('bitcore-explorers');
 const defaults = {
-  rpc: "https://cashexplorer.bitcoin.com",
+  rpc: "https://bchsvexplorer.com",
   fee: 400
 }
 // The end goal of 'build' is to create a hex formated transaction object
