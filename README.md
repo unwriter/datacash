@@ -123,7 +123,7 @@ And that's it! No complex APIs, but you can construct pretty much all kinds of O
 
 `datacash` was created in order to make it dead simple to construct `OP_RETURN` related transactions, but you can even use it to build regular transactions.
 
-Also `datacash` exposes `datacash.bch` endpoint which you can use to access the underlying `bitcore-lib-cash` library. If you need more sophisticated features (in most cases you won't), feel free to use this feature. Best of both worlds!
+Also `datacash` exposes `datacash.bsv` endpoint which you can use to access the underlying `bitcore-lib-cash` library. If you need more sophisticated features (in most cases you won't), feel free to use this feature. Best of both worlds!
 
 ---
 
@@ -443,12 +443,12 @@ While Datacash is designed to be the simplest possible way to write data to the 
 
 Datacash exposes additional endpoints so you can simply access these libraries without having to install or include any additional libraries.
 
-## 1. datacash.bch
+## 1. datacash.bsv
 
-This endpoint exposes the [bitcore-lib-cash](https://github.com/bitpay/bitcore-lib-cash) library object. Basically by referncing `bch` you have access to the entire bitcore-lib-cash library.
+This endpoint exposes the [bitcore-lib-cash](https://github.com/bitpay/bitcore-lib-cash) library object. Basically by referncing `bsv` you have access to the entire bitcore-lib-cash library.
 
 ```
-const privateKey = new datacash.bch.PrivateKey();
+const privateKey = new datacash.bsv.PrivateKey();
 const address = privateKey.toAddress();
 console.log(address.toString()) // 15WZwpw3BofscM2u43ji85BXucai5YGToL
 ```
