@@ -1,4 +1,4 @@
-const bch = require('bsv');
+const bsv = require('bsv');
 const explorer = require('bitcore-explorers');
 const defaults = {
   rpc: "https://bchsvexplorer.com",
@@ -15,7 +15,7 @@ var build = function(options, callback) {
     // if it's a signed transaction
     // and the request is trying to override using 'data' or 'cash',
     // we should throw an error
-    let tx = new bch.Transaction(options.tx)
+    let tx = new bsv.Transaction(options.tx)
     // transaction is already signed
     if (tx.inputs.length > 0 && tx.inputs[0].script) {
       if (options.cash || options.data) {
@@ -34,13 +34,13 @@ var build = function(options, callback) {
   if (options.cash && options.cash.key) {
     // key exists => create a signed transaction
     let key = options.cash.key;
-    const privateKey = new bch.PrivateKey(key);
+    const privateKey = new bsv.PrivateKey(key);
     const address = privateKey.toAddress();
     const insight = new explorer.Insight(rpcaddr)
     insight.getUnspentUtxos(address, function (err, res) {
-      let tx = new bch.Transaction(options.tx).from(res);
+      let tx = new bsv.Transaction(options.tx).from(res);
       if (script) {
-        tx.addOutput(new bch.Transaction.Output({ script: script, satoshis: 0 }));
+        tx.addOutput(new bsv.Transaction.Output({ script: script, satoshis: 0 }));
       }
       if (options.cash.to && Array.isArray(options.cash.to)) {
         options.cash.to.forEach(function(receiver) {
@@ -69,9 +69,9 @@ var build = function(options, callback) {
   } else {
     // key doesn't exist => create an unsigned transaction
     let fee = (options.cash && options.cash.fee) ? options.cash.fee : defaults.fee;
-    let tx = new bch.Transaction(options.tx).fee(fee);
+    let tx = new bsv.Transaction(options.tx).fee(fee);
     if (script) {
-      tx.addOutput(new bch.Transaction.Output({ script: script, satoshis: 0 }));
+      tx.addOutput(new bsv.Transaction.Output({ script: script, satoshis: 0 }));
     }
     callback(null, tx)
   }
@@ -92,9 +92,9 @@ var _script = function(options) {
   var s = null;
   if (options.data) {
     if (Array.isArray(options.data)) {
-      s = new bch.Script();
+      s = new bsv.Script();
       // Add op_return
-      s.add(bch.Opcode.OP_RETURN);
+      s.add(bsv.Opcode.OP_RETURN);
       options.data.forEach(function(item) {
         // add push data
         if (/^0x/i.test(item)) {
@@ -107,7 +107,7 @@ var _script = function(options) {
       })
     } else if (typeof options.data === 'string') {
       // Exported transaction 
-      s = bch.Script.fromHex(options.data);
+      s = bsv.Script.fromHex(options.data);
     }
   }
   return s;
@@ -119,7 +119,7 @@ var connect = function(endpoint) {
 module.exports = {
   build: build,
   send: send,
-  bch: bch,
+  bsv: bsv,
   connect: connect,
 }
 
