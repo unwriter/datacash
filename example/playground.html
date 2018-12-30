@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         .then(function(response) {
           console.log("Response = ", response)
           e.target.textContent = "Sent!";
-          confirmEl.innerHTML = "<a href='https://explorer.bitcoin.com/bch/tx/" + response.tx + "' target='_blank'>Success! Click to view Transaction</a>";
+          confirmEl.innerHTML = "<a href='https://bchsvexplorer.com/tx/" + response.tx + "' target='_blank'>Success! Click to view Transaction</a>";
         })
       }
     }
@@ -165,10 +165,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 <body>
   <div class='container'>
     <div class='row noflex'>
-      <h1>Bitcoin Cash Microblogging Playground</h1>
-      This website uses an open source Bitcoin Cash library called <a href='https://github.com/unwriter/datacash'>Datacash</a> to construct and broadcast OP_RETURN Bitcoin Cash Transactions.<br><br>
+      <h1>Bitcoin SV Microblogging Playground</h1>
+      This website uses an open source Bitcoin SV library called <a href='https://github.com/unwriter/datacash'>Datacash</a> to construct and broadcast OP_RETURN Bitcoin SV Transactions.<br><br>
       1. All the signing takes place 100% on the client side so your private key is safe. (Check out the source code to make sure)<br><br>
-      2. After the signed transaction is constructed, you can broadcast it to Bitcoin Cash network by pressing the "Send" button. This will broadcast the signed transaction through a public JSON-RPC endpoint.
+      2. After the signed transaction is constructed, you can broadcast it to Bitcoin SV network by pressing the "Send" button. This will broadcast the signed transaction through a public JSON-RPC endpoint.
     </div>
     <div class='row'>
       <h2>Step 1. Select a protocol</h2>
