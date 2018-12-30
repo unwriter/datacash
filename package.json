@@ -17,7 +17,7 @@
   "unpkg": "dist/datacash.min.js",
   "dependencies": {
     "bitcore-explorers": "^1.0.1",
-    "bitcore-lib-cash": "^0.18.1"
+    "bsv": "^0.18.1"
   },
   "files": [
     "dist"
