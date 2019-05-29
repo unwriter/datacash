@@ -38,6 +38,7 @@ var build = function(options, callback) {
     const address = privateKey.toAddress();
     const insight = new explorer.Insight(rpcaddr)
     insight.getUnspentUtxos(address, function (err, res) {
+      if (err) return callback(err);
       let tx = new bch.Transaction(options.tx).from(res);
       if (script) {
         tx.addOutput(new bch.Transaction.Output({ script: script, satoshis: 0 }));
@@ -78,6 +79,7 @@ var build = function(options, callback) {
 }
 var send = function(options, callback) {
   build(options, function(err, tx) {
+    if (err) return callback(err);
     let rpcaddr = (options.cash && options.cash.rpc) ? options.cash.rpc : defaults.rpc;
     const insight = new explorer.Insight(rpcaddr)
     if (callback) {
